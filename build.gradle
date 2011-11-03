@@ -1,0 +1,39 @@
+// use Gradle 1.0-milestone-5
+
+//evaluationDependsOn (':gfuzzy-core')
+
+allprojects {
+	
+	defaultTasks 'clean', 'build', 'cleanEclipse', 'eclipse'
+	
+	apply plugin: 'scala'
+	
+	apply plugin: 'eclipse'
+	eclipse {
+		pathVariables 'GRADLE_M5_CACHE': file("${gradle.startParameter.gradleUserHomeDir}/caches/artifacts-3")
+		classpath {
+			containers.clear()
+			containers "org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"
+		}
+	}
+	
+	apply plugin: 'project-report'
+	
+	project.sourceCompatibility = 1.6
+	sourceCompatibility = 1.6
+	
+	repositories {
+		mavenCentral()
+	}
+	
+	dependencies {
+		scalaTools 'org.scala-lang:scala-compiler:2.9.1'
+		scalaTools 'org.scala-lang:scala-library:2.9.1'
+		
+		compile 'org.scala-lang:scala-library:2.9.1'
+		testCompile 'junit:junit:4.8.2'
+	}
+	
+}
+
+
