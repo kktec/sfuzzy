@@ -1,1 +1,1 @@
-include 'sfuzzy-core'
+include 'sfuzzy-core', 'sfuzzy-examples'

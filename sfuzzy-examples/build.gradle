@@ -1,0 +1,12 @@
+dependencies {
+	compile project(':sfuzzy-core')
+}
+
+eclipse {
+	project {
+		referencedProjects 'sfuzzy-core'
+	}
+}
+
+
+

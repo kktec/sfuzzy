@@ -1,6 +1,6 @@
 // use Gradle 1.0-milestone-5
 
-//evaluationDependsOn (':gfuzzy-core')
+evaluationDependsOn (':sfuzzy-core')
 
 allprojects {
 	
@@ -12,8 +12,12 @@ allprojects {
 	eclipse {
 		pathVariables 'GRADLE_M5_CACHE': file("${gradle.startParameter.gradleUserHomeDir}/caches/artifacts-3")
 		classpath {
+			minusConfigurations += configurations.scalaTools
 			containers.clear()
-			containers "org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"
+			containers  = [
+				"org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6",
+				"org.scala-ide.sdt.launching.SCALA_CONTAINER"
+			]
 		}
 	}
 	
@@ -27,10 +31,11 @@ allprojects {
 	}
 	
 	dependencies {
-		scalaTools 'org.scala-lang:scala-compiler:2.9.1'
-		scalaTools 'org.scala-lang:scala-library:2.9.1'
+		def scalaCompiler = 'org.scala-lang:scala-compiler:2.9.1'
+		def scalaLibrary = 'org.scala-lang:scala-library:2.9.1'
+		scalaTools scalaCompiler, scalaLibrary
 		
-		compile 'org.scala-lang:scala-library:2.9.1'
+		compile scalaLibrary
 		testCompile 'junit:junit:4.8.2'
 		testCompile 'org.scala-tools.testing:specs_2.9.1:1.6.9'
 	}
