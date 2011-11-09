@@ -71,6 +71,7 @@ class FuzzyTests extends Specification with JUnit {
     "NOTing Fuzzies returns a new Fuzzy with the 1.0 minus the value" in {
       val fuzzy = Fuzzy(0.24)
       !fuzzy must_== Fuzzy(0.76)
+      fuzzy.not() must_== Fuzzy(0.76)
     }
 
   }

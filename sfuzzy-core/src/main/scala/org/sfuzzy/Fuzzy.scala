@@ -12,14 +12,14 @@ object Fuzzy {
 
   def apply() = MIN
 
-  def apply(v: Number) = new Fuzzy(v)
+  def apply(v: Double) = new Fuzzy(v)
 }
 
-class Fuzzy private (v: Number) extends Number {
+class Fuzzy private (v: Double) extends Number {
 
-  require(v.doubleValue() >= Fuzzy.MIN_VALUE && v.doubleValue() <= Fuzzy.MAX_VALUE)
+  require(v >= Fuzzy.MIN_VALUE && v <= Fuzzy.MAX_VALUE)
 
-  val value: Double = v.doubleValue()
+  val value = v
 
   def intValue() = value.intValue()
 
@@ -49,6 +49,8 @@ class Fuzzy private (v: Number) extends Number {
   def |(other: Fuzzy): Fuzzy = if (other.doubleValue() > value) other else this
   
   def unary_! = Fuzzy(Fuzzy.MAX_VALUE - value)
+  
+  def not() = unary_!
     
 }
 
