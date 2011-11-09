@@ -7,6 +7,9 @@ allprojects {
 	defaultTasks 'clean', 'build', 'cleanEclipse', 'eclipse'
 	
 	apply plugin: 'scala'
+	compileScala {
+		scalaCompileOptions.debugLevel = source
+	}
 	
 	apply plugin: 'eclipse'
 	eclipse {
@@ -20,6 +23,10 @@ allprojects {
 			]
 		}
 	}
+	
+	// uses 1.0-milestone-5 deprecated sourceSet.classesDir, should now use output.classesDir
+	apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/ivy/gradle_cobertura/gradle_cobertura/1.0-rc4/coberturainit.gradle'
+	coverageSourceDirs = ['src/main/scala']
 	
 	apply plugin: 'project-report'
 	

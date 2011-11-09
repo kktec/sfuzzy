@@ -34,6 +34,10 @@ class FuzzyTests extends Specification with JUnit {
       Fuzzy(0.25) must_!= Fuzzy(0.75)
     }
 
+    "Fuzzy values must not be equal to other Objects" in {
+      Fuzzy(0.25) must_!= new Object()
+    }
+
     "Fuzzy hashCode must be equal to value hashCode" in {
       Fuzzy(0.5).hashCode() must_== 0.5.hashCode()
     }
